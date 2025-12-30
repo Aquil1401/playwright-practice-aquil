@@ -3,19 +3,24 @@ name: Playwright Tests
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   test:
+    name: Run Playwright Tests
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -26,25 +31,18 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # ✅ DEBUG + TEST IN SAME ENV CONTEXT
-      - name: Debug ENV & Run Playwright tests
+      - name: Run Playwright tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        run: |
-          echo "CI flag: $CI"
-          echo "BASE_URL: ${BASE_URL:+SET}"
-          echo "USER_EMAIL: ${USER_EMAIL:+SET}"
-          echo "USER_PASSWORD: ${USER_PASSWORD:+SET}"
-          echo "Checking .env file:"
-          if [ -f .env ]; then echo ".env EXISTS"; else echo ".env NOT FOUND"; fi
-          npx playwright test
+        run: npx playwright test
 
+      # ✅ HTML REPORT UPLOAD
       - name: Upload Playwright HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-html-report
           path: playwright-report/
           retention-days: 15
