@@ -1,6 +1,5 @@
 # GITHUB BADGES
 
-````md
 ![Playwright](https://img.shields.io/badge/Playwright-Automation-green)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strong-blue)
 ![POM](https://img.shields.io/badge/Design-POM-orange)
