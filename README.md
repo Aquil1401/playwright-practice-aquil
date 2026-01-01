@@ -59,8 +59,8 @@ playwright-pom-framework/
 
 ## 1️⃣ Clone the repository
 
-git clone https://github.com/yourusername/playwright-pom-framework.git
-cd playwright-pom-framework
+git clone https://github.com/Aquil1401/playwright-practice-aquil
+cd playwright-practice-aquil
 
 ## 2️⃣ Install dependencies
 
