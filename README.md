@@ -124,6 +124,12 @@ Configured via (playwright.config.ts)
 Contributions are welcome.
 Feel free to open an issue or submit a pull request.
 
+## Contributing
+- Fork the repository
+- Create a feature branch
+- Raise a Pull Request to `main`
+- Ensure all CI checks pass
+
 ## 👤 Author
 
 **Md Aquil**
